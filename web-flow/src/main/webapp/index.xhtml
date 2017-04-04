@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"     
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:passthrough="http://xmlns.jcp.org/jsf/passthrough"     
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <title>Calculate Applicant Rate</title>
+    </h:head>       
+
+    <f:view transient="false">
+        <h:form>
+            <p:layout  fullPage="true" style="min-width:400px;min-height:200px;">
+                <p:layoutUnit position="west" resizable="true" size="800" minSize="600" maxSize="800">                   
+                    <p:panel id="panel" style="width: 600px;" header="Calculate Applicant Rate" toggleable="true">
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <p:outputLabel for="creditScore" value="Credit Score" />
+                            <p:inputText id="creditScore" value="#{startBean.applicantBean.creditScore}" required="true" />
+
+                            <p:outputLabel for="cashOnHand" value="Cash On Hand" />
+                            <p:inputText id="cashOnHand" value="#{startBean.applicantBean.cashOnHand}" required="true" />
+
+                            <p:outputLabel for="firstTimeHomeBuyer" value="First Time Home Buyer" />
+                            <p:selectBooleanCheckbox id="firstTimeHomeBuyer" value="#{startBean.applicantBean.firstTimeHomeBuyer}" required="true"/>
+
+                            <p:commandButton id="submit" ajax="false" value="Calculate" actionListener="#{startBean.sendMessage()}"/>
+
+
+                        </h:panelGrid>
+                        <h:outputText value="Applicant qualified for the following rate: #{startBean.message}"/>
+                    </p:panel>
+                </p:layoutUnit>
+                <p:layoutUnit position="center">          
+
+                </p:layoutUnit>
+            </p:layout>
+        </h:form>
+    </f:view>    
+</html>
+
